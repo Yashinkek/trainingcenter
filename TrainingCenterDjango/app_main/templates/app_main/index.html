@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href ="{%url 'about'%}"> About</a>
+<a href ="{%url 'create'%}"> Create</a>
+<br>
+<br>
+Просто текст на index.html
+<br>
+{%for el in groups%}
+<dir>
+<h3> {{ el.id }}</h3>
+<p> {{ el.status }}</p>
+<p> {{ el.direction }}</p>
+</dir>
+{%endfor%}
+<br>
+еще что то
+
+</body>
+</html>

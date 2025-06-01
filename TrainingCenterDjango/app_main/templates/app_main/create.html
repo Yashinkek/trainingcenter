@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href ="{%url 'home'%}"> Home</a>
+<br>
+<br>
+Введите данные для добавление записи в таблицу групп
+<br>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.responsible_person }}
+    {{ form.status }}
+    {{ form.direction }}
+    <br>
+    <button type="submit"> Добавать </button>
+</form>
+{{t}}
+</body>
+</html>
