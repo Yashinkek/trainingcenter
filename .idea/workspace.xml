@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TrainingCenter.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Commit #1">
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/migrations/0002_remove_students_group.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/add_students_group.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/create_group.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/delete_group.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +33,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -37,14 +49,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.services.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;orm#1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -61,6 +74,19 @@
       <option name="presentableId" value="Default" />
       <updated>1748433759336</updated>
     </task>
+    <task id="LOCAL-00001" summary="Commit #1">
+      <option name="closed" value="true" />
+      <created>1748777207984</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748777207984</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #1" />
   </component>
 </project>

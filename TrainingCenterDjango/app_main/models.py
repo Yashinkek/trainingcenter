@@ -13,7 +13,6 @@ class students(models.Model):
     snils = models.CharField('СНИЛС', max_length=200)
     education = models.CharField('Документ об образовании', max_length=200)
     passport_issued = models.CharField('Паспорт выдан', max_length=200)
-    group = models.IntegerField('Группа')
     organization = models.IntegerField('Организация')
     medical_certificate = models.CharField('Медицинская справка', max_length=200)
 
