@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Commit #1">
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/migrations/0002_remove_students_group.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/add_students_group.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/create_group.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/delete_group.html" afterDir="false" />
+    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Commit #2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,11 +75,20 @@
       <option name="project" value="LOCAL" />
       <updated>1748777207984</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit #2">
+      <option name="closed" value="true" />
+      <created>1748848172067</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1748848172067</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #1" />
+    <MESSAGE value="Commit #2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #2" />
   </component>
 </project>

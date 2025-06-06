@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import students, groups, organizations, users, logs, group_composition
-from .forms import creategroupsForm, authorizationForm, viewsstudentsForm, deletegroupsForm
+from .forms import create_groups_form, authorization_form, views_students_form, delete_groups_form
 from .services import create_group_service, authorizationservice, add_students_group_services, delete_group_service
 def index(request):
     g = groups.objects.all()
@@ -13,7 +13,7 @@ def create_group(request):
     response = ""
     if request.method == 'POST':
         response = create_group_service(request)
-    form = creategroupsForm()
+    form = create_groups_form()
 
     context = {
         'form' : form,
@@ -25,7 +25,7 @@ def delete_group(request):
     response = ""
     if request.method == 'POST':
         response = delete_group_service(request)
-    form = deletegroupsForm()
+    form = delete_groups_form()
 
     context = {
         'form' : form,
@@ -38,7 +38,7 @@ def authorization(request):
     response = ""
     if request.method == 'POST':
         response = authorizationservice(request)
-    form = authorizationForm()
+    form = authorization_form()
 
     context = {
         'form' : form,
@@ -51,7 +51,7 @@ def add_students_group(request):
     if request.method == 'POST':
         response = add_students_group_services(request)
 
-    form = viewsstudentsForm()
+    form = views_students_form()
     s = students.objects.all()
     g = groups.objects.all()
     context = {
