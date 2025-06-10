@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href ="{%url 'home'%}"> Home</a>
+<br>
+{%for el in groups%}
+    <h3> {{ el.id }}</h3>
+    <p> {{ el.status }}</p>
+    <p> {{ el.direction }}</p>
+{%endfor%}
+<h1>Удалить группу</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Удалить группу</button>
+    </form>
+{{response}}
+</body>
+</html>

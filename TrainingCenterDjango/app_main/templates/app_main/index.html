@@ -6,17 +6,18 @@
 </head>
 <body>
 <a href ="{%url 'about'%}"> About</a>
-<a href ="{%url 'create'%}"> Create</a>
+<a href ="{%url 'create_group'%}"> Create_group</a>
+<a href ="{%url 'authorization'%}"> Authorization</a>
+<a href ="{%url 'add_students_group'%}"> Add_students_group</a>
+<a href ="{%url 'delete_group'%}"> Delete_group</a>
 <br>
 <br>
 Просто текст на index.html
 <br>
 {%for el in groups%}
-<dir>
-<h3> {{ el.id }}</h3>
-<p> {{ el.status }}</p>
-<p> {{ el.direction }}</p>
-</dir>
+    <h3> {{ el.id }}</h3>
+    <p> {{ el.status }}</p>
+    <p> {{ el.direction }}</p>
 {%endfor%}
 <br>
 еще что то

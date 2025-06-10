@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href ="{%url 'home'%}"> Home</a>
+<br>
+    <form method="POST">
+        {% csrf_token %}
+        {%for el in students%}
+            <h3> {{ el.first_name }}</h3>
+            <p> {{ el.last_name }}</p>
+            <p> {{ el.surname }}</p>
+            <input type="checkbox" name="checkbox_students" value="{{el.id}}">
+        {%endfor%}
+        {%for el in groups%}
+            <h3> {{ el.id }}</h3>
+            <p> {{ el.status }}</p>
+            <p> {{ el.direction }}</p>
+            <input type="checkbox" name="checkbox_groups" value="{{el.id}}">
+        {%endfor%}
+        <button type="submit">Отправить</button>
+    </form>
+{{response}}
+<br>
+</body>
+</html>
