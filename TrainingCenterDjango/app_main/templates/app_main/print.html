@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Печать</title>
+    <style>
+        html, body {
+            margin: 0; /* Убираем отступы по умолчанию */
+            padding: 0; /* Убираем внутренние отступы */
+            width: 100%; /* Ширина на 100% */
+            height: 100%; /* Высота на 100% */
+            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+            font-family: Arial, sans-serif; /* Шрифт для всей страницы */
+        }
+        .header {
+            background-color: #00BFFF; /* Лазурный цвет */
+            width: 100%; /* Ширина 100% */
+            display: flex; /* Используем flex для выравнивания элементов */
+            align-items: center; /* Центрируем по вертикали */
+            padding: 10px; /* Добавляем немного внутреннего отступа */
+            position: absolute; /* Фиксируем заголовок в верхней части страницы */
+            top: 0; /* Прикрепляем к верхней части */
+        }
+        .header img {
+            max-height: 50px; /* Ограничиваем высоту изображения */
+            margin-right: 10px; /* Отступ справа от изображения */
+        }
+        .header a {
+            text-decoration: none; /* Убираем подчеркивание */
+            color: white; /* Цвет текста по умолчанию для ссылок */
+            background-color: black; /* Черный фон для ссылок */
+            padding: 5px 10px; /* Внутренние отступы для кнопок */
+            border-radius: 5px; /* Закругленные углы для кнопок */
+            transition: background-color 0.3s; /* Плавный переход цвета фона */
+            margin-left: 30px; /* Отступ между ссылками */
+        }
+        .header a:hover {
+            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+        }
+        .header a.select {
+            color: black; /* Черный текст для ссылки "Регистрация" */
+            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+        }
+        .header a.select:hover {
+            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+        }
+        .exit-icon {
+            margin-left: auto; /* Отталкиваем изображение вправо */
+            max-height: 50px; /* Ограничиваем высоту изображения выходного значка */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="image/logo.png" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
+        <a href="registration_groups">Регистрация</a> <!-- Добавлен класс registration -->
+        <a href="monitoring">Мониторинг</a>
+        <a href="print" class="select">Печать </a>
+        <img src="image/exit.png" alt="Exit" class="exit-icon"> <!-- Класс для иконки выхода -->
+    </div>
+</body>
+</html>

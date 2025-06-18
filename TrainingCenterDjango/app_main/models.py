@@ -151,10 +151,10 @@ class users(models.Model):
             self.password = password
         self.save()
 
-    def authorization(cls, query):
+    def authorization(cls, login, password):
         return cls.objects.filter(
-            models.Q(login__icontains=query) |
-            models.Q(password__icontains=query)
+            models.Q(login__icontains=login) |
+            models.Q(password__icontains=password)
         )
     def rule_check(cls, query):
         return cls.objects.filter(

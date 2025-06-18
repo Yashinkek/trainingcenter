@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        html, body {
+            margin: 0; /* Убираем отступы по умолчанию */
+            padding: 0; /* Убираем внутренние отступы */
+            width: 100%; /* Ширина на 100% */
+            height: 100%; /* Высота на 100% */
+            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+            font-family: Arial, sans-serif; /* Шрифт для всей страницы */
+        }
+        .header {
+            background-color: #00BFFF; /* Лазурный цвет */
+            width: 100%; /* Ширина 100% */
+            display: flex; /* Используем flex для выравнивания элементов */
+            align-items: center; /* Центрируем по вертикали */
+            padding: 10px; /* Добавляем немного внутреннего отступа */
+            position: absolute; /* Фиксируем заголовок в верхней части страницы */
+            top: 0; /* Прикрепляем к верхней части */
+        }
+        .header img {
+            max-height: 50px; /* Ограничиваем высоту изображения */
+            margin-right: 10px; /* Отступ справа от изображения */
+        }
+        .header a {
+            text-decoration: none; /* Убираем подчеркивание */
+            color: white; /* Цвет текста по умолчанию для ссылок */
+            background-color: black; /* Черный фон для ссылок */
+            padding: 5px 10px; /* Внутренние отступы для кнопок */
+            border-radius: 5px; /* Закругленные углы для кнопок */
+            transition: background-color 0.3s; /* Плавный переход цвета фона */
+            margin-left: 30px; /* Отступ между ссылками */
+        }
+        .header a:hover {
+            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+        }
+        .header a.select {
+            color: black; /* Черный текст для ссылки "Регистрация" */
+            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+        }
+        .header a.select:hover {
+            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+        }
+        .exit-icon {
+            margin-left: auto; /* Отталкиваем изображение вправо */
+            max-height: 50px; /* Ограничиваем высоту изображения выходного значка */
+        }
+        .links-container {
+            display: flex; /* Используем flex для выравнивания элементов */
+            margin-top: 70px; /* Отступ сверху, чтобы отделить от хедера */
+            margin-left: 10px; /* Отступ слева для контейнера с ссылками */
+        }
+        .links-container a {
+            text-decoration: none; /* Убираем подчеркивание */
+            color: white; /* Цвет текста ссылок, такой же как у мониторинга */
+            background-color: black; /* Черный фон для ссылок */
+            padding: 5px 10px; /* Внутренние отступы для кнопок */
+            border-radius: 5px; /* Закругленные углы для кнопок */
+            transition: background-color 0.3s; /* Плавный переход цвета фона */
+            margin-right: 15px; /* Отступы между ссылками */
+        }
+        .links-container a:hover {
+            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+        }
+        .links-container a.select {
+            color: black; /* Черный текст для ссылки "Регистрация" */
+            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+        }
+        .links-container a.select:hover {
+            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+        }
+        .container {
+            display: flex; /* Используем Flexbox для центрирования */
+            flex-direction: column; /* Вертикальное направление */
+            align-items: center; /* Центрируем по горизонтали */
+            height: 100vh; /* Высота на 100% от видимой области */
+            justify-content: flex-start; /* Выравниваем содержимое по верхнему краю */
+            padding-top: 60px; /* Отступ сверху для контейнера */
+        }
+        .search-form {
+            background-color: white; /* Фоновый цвет формы */
+            padding: 20px; /* Внутренние отступы формы */
+            border-radius: 5px; /* Закругленные углы формы */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+            width: calc(100% - 200px); /* Ширина формы на 100% относительно контейнера */
+        }
+        .search-form label {
+            margin-bottom: 5px; /* Отступ снизу для меток */
+            display: block; /* Делаем метки блочными элементами для переноса на новую строку */
+            color: #333; /* Цвет текста меток */
+        }
+        .search-form input {
+            margin-bottom: 10px; /* Отступ между полями ввода */
+            padding: 10px; /* Внутренние отступы в полях ввода */
+            width: calc(100% - 22px); /* Ширина полей ввода на всю ширину формы с учетом отступов */
+            border: 1px solid #ccc; /* Граница полей ввода */
+            border-radius: 5px; /* Закругленные углы полей ввода */
+        }
+        .search-form button {
+            padding: 10px; /* Внутренние отступы кнопки */
+            width: 100%; /* Ширина кнопки на всю ширину формы */
+            background-color: #00BFFF; /* Цвет кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем границу кнопки */
+            border-radius: 5px; /* Закругленные углы кнопки */
+            cursor: pointer; /* Курсор при наведении на кнопку */
+        }
+        .search-form button:hover {
+            background-color: #0099CC; /* Цвет кнопки при наведении */
+        }
+        .info-bar {
+            background-color: #f0f0f0; /* Светло-серый фон для полосы информации */
+            padding: 20px; /* Внутренние отступы полосы информации */
+            padding-left: 250px; /* Отступ слева (можете изменить значение) */
+            padding-right: 0px;
+            width: calc(100% - 450px); /* Ширина полосы информации на 100% относительно контейнера */
+            margin-top: 20px; /* Отступ сверху для разделения с формой */
+            border-radius: 5px; /* Закругленные углы полосы информации */
+            display: flex; /* Используем Flexbox для расположения меток в одну строку */
+            margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+            gap: 380px; /* Отступы между записями (можете изменить значение) */
+        }
+        .info-bar label {
+            color: #333; /* Цвет текста меток в полосе информации */
+        }
+        .data-bar {
+        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+        padding: 15px; /* Внутренние отступы полосы данных */
+        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+        display: flex; /* Используем Flexbox для горизонтального расположения */
+        align-items: center; /* Центрируем элементы по вертикали */
+    }
+
+    .data-bar h3, .data-bar p {
+    background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+        padding: 15px; /* Внутренние отступы полосы данных */
+        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 150px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+        display: flex; /* Используем Flexbox для горизонтального расположения */
+        align-items: center; /* Центрируем элементы по вертикали */
+        justify-content: space-between; /* Равномерное распределение элементов по ширине */
+    }
+        .data-bar img {
+        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+
+
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 10px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+
+        align-items: center; /* Центрируем элементы по вертикали */
+        justify-content: flex-start;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="image/logo.png" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
+        <a href="registration_groups" class="select">Регистрация</a> <!-- Добавлен класс registration -->
+        <a href="monitoring">Мониторинг</a>
+        <a href="print">Печать</a>
+        <img src="image/exit.png" alt="Exit" class="exit-icon"> <!-- Класс для иконки выхода -->
+    </div>
+
+    <div class="links-container">
+        <a href="registration_groups" class="select">Группы</a>
+        <a href="registration_students">Обучающиеся</a>
+        <a href="registration_organizations">Организации</a>
+    </div>
+    <div class="container">
+        <form class="search-form" method="post">
+            <h1>Параметры фильтрации</h1>
+            {% csrf_token %}
+            <label>Направление</label>
+            {{ form.direction }}
+            <label>Статус</label>
+            {{ form.status }}
+            <br>
+            <button type="submit">Поиск</button>
+        </form>
+        <!-- Светло-серая полоса с метками -->
+        <div class="info-bar">
+            <label>Номер группы</label>
+            <label>Статус</label>
+            <label>Направление</label>
+            <label>Кол-во обучающихся</label>
+            <label>Ответственное</label>
+
+        </div>
+        {% for el in groups %}
+        <div class="data-bar">
+            <img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo">
+            <h3>{{ el.id }}</h3>
+            <p>{{ el.status }}</p>
+            <p>{{ el.status }}</p>
+            <p>{{ el.status }}</p>
+            <p>{{ el.direction }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+</body>
+</html>

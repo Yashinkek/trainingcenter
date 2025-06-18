@@ -16,19 +16,42 @@ def delete_group_service(request):
 
 
 #def authorizationservice(request):
+#    print("сервис вызван")
 #    form = authorization_form(request.POST)
 #    if form.is_valid():
-        #all_values = form.cleaned_data
-        #user = users.objects.filter(login=all_values.get('login')).first()
-        #if user and all_values.get('password') == user.password:
-        #    rule = all_values.get('title')
-        #    return "авторизация удалась"
+#        print("данные валидны")
+#        all_values = form.cleaned_data
+#        login = all_values.get('login')
+#        password = all_values.get('password')
+#        user = users.authorization(login, password)
+#        #user = users.objects.filter(login=all_values.get('login')).first()
+#        if user:
+#            print("fdnjhbpfwbz elfkfcm")
+#            return "авторизация удалась"
 
 
+def authorizationservice(request):
+    print("сервис вызван")
+    form = authorization_form(request.POST)
+    if form.is_valid():
+        print("данные валидны")
+        all_values = form.cleaned_data
+        login = all_values.get('login')
+        password = all_values.get('password')
+        user = users.authorization(login, password)
+        if user:
+            print("авторизация удалась")
+            return "авторизация удалась"
+        else:
+            print("неверные данные для входа")
+            return "неверные данные для входа"
+    else:
+        print("данные не валидны")
+        return "данные не валидны"
 
 
-#def add_students_group_services(request):
-#    form = views_students_form(request.POST)
-#    if form.is_valid():
-#        ids_student = form.cleaned_data['selected_ids']
-#        return "сервис сработал"
+def add_students_group_services(request):
+    form = views_students_form(request.POST)
+    if form.is_valid():
+        ids_student = form.cleaned_data['selected_ids']
+        return "сервис сработал"
