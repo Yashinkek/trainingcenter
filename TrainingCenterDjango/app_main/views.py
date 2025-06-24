@@ -90,6 +90,17 @@ def registration_organizations(request):
 def registration_organizations(request):
     return render(request, 'app_main/registration_organizations.html')
 
+def registration(request):
+    form1 = forms.registration_groups_form()
+    form2 = forms.registration_students_form()
+    g = groups.objects.all()
+    context = {
+        'form1': form1,
+        'form2': form2,
+        'groups': g
+    }
+    return render(request, 'app_main/registration.html', context)
+
 def monitoring(request):
     return render(request, 'app_main/monitoring.html')
 

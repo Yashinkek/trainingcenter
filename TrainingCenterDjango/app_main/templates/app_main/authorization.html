@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +79,7 @@
 </head>
 <body>
     <div class="header">
-        <img src="image/logo.png" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
+        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
     </div>
 
     <div class="form-title">Авторизация</div> <!-- Заголовок над формой -->

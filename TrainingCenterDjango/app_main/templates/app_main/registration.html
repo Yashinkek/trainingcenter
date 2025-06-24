@@ -224,13 +224,7 @@
         <a href="registration_groups" class="select">Регистрация</a> <!-- Добавлен класс registration -->
         <a href="monitoring">Мониторинг</a>
         <a href="print">Печать</a>
-    <img
-    src="{% static 'app_main/images/exit.png' %}"
-    alt="Exit"
-    class="exit-icon"
-    onclick="window.location.href='/authorization'"
-    style="cursor: pointer;"
->
+        <img src="image/exit.png" alt="Exit" class="exit-icon"> <!-- Класс для иконки выхода -->
     </div>
 
     <div class="links-container">
@@ -284,8 +278,9 @@
                 <tbody>
                 {% for el in groups %}
                     <tr>
-                        <td><img src="{% static 'app_main/images/redact.png' %}" alt="Redact" width="50" height="50">
-            <img src="{% static 'app_main/images/delete.png' %}" alt="Delete" width="50" height="50"></td>
+                        <td><img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo"></td>
                         <td>{{ el.status }}</td>
                         <td>{{ el.status }}</td>
                         <td>{{ el.status }}</td>
