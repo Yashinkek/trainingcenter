@@ -86,9 +86,9 @@
 
     <form class="login-form" method="post">
         {% csrf_token %}
-        <label for="login">Логин</label>
+        <label>Логин</label>
         {{ form.login }}
-        <label for="password">Пароль</label>
+        <label>Пароль</label>
         {{ form.password }}
         <br>
         <button type="submit">Войти</button>

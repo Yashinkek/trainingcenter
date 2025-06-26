@@ -19,7 +19,7 @@ class authorization_form(ModelForm):
 class registration_groups_form(ModelForm):
     class Meta:
         model = groups
-        fields = ["status", "direction"]
+        fields = ["status", "direction", "responsible_person"]
 class registration_students_form(ModelForm):
     class Meta:
         model = students

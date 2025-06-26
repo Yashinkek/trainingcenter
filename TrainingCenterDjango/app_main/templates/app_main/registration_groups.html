@@ -5,223 +5,412 @@
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <style>
-        html, body {
-            margin: 0; /* Убираем отступы по умолчанию */
-            padding: 0; /* Убираем внутренние отступы */
-            width: 100%; /* Ширина на 100% */
-            height: 100%; /* Высота на 100% */
-            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
-            font-family: Arial, sans-serif; /* Шрифт для всей страницы */
-        }
-        .header {
-            background-color: #00BFFF; /* Лазурный цвет */
-            width: 100%; /* Ширина 100% */
-            display: flex; /* Используем flex для выравнивания элементов */
-            align-items: center; /* Центрируем по вертикали */
-            padding: 10px; /* Добавляем немного внутреннего отступа */
-            position: absolute; /* Фиксируем заголовок в верхней части страницы */
-            top: 0; /* Прикрепляем к верхней части */
-        }
+    /* Общие стили */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+    }
+    :root {
+        --primary-color: #2c3e50;    /* Темно-синий вместо ярко-голубого */
+        --secondary-color: #3498db;  /* Приятный синий */
+        --accent-color: #e74c3c;    /* Акцентный красный */
+        --success-color: #27ae60;   /* Зеленый для успешных действий */
+        --warning-color: #f39c12;   /* Оранжевый для предупреждений */
+        --light-gray: #ecf0f1;      /* Светло-серый фон */
+        --dark-gray: #7f8c8d;       /* Темно-серый для текста */
+        --white: #ffffff;
+    }
+
+    /* Оставляем все стили для хедера и других элементов без изменений */
+    .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed; /* Меняем absolute на fixed */
+    top: 0;
+    z-index: 1000; /* Убедимся, что хедер поверх всего */
+    background-color: var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
         .header img {
-            max-height: 50px; /* Ограничиваем высоту изображения */
-            margin-right: 10px; /* Отступ справа от изображения */
+            max-height: 50px;
+            margin-right: 10px;
         }
         .header a {
-            text-decoration: none; /* Убираем подчеркивание */
-            color: white; /* Цвет текста по умолчанию для ссылок */
-            background-color: black; /* Черный фон для ссылок */
-            padding: 5px 10px; /* Внутренние отступы для кнопок */
-            border-radius: 5px; /* Закругленные углы для кнопок */
-            transition: background-color 0.3s; /* Плавный переход цвета фона */
-            margin-left: 30px; /* Отступ между ссылками */
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-left: 30px;
+            color: var(--white);
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 15px;
         }
         .header a:hover {
-            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+            background-color: #2980b9;
         }
         .header a.select {
-            color: black; /* Черный текст для ссылки "Регистрация" */
-            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+            color: var(--white);
+            background-color: var(--warning-color);
         }
         .header a.select:hover {
-            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+            background-color: #e67e22;
         }
         .exit-icon {
-            margin-left: auto; /* Отталкиваем изображение вправо */
-            max-height: 50px; /* Ограничиваем высоту изображения выходного значка */
+            margin-left: auto;
+            max-height: 50px;
         }
-        .links-container {
-            display: flex; /* Используем flex для выравнивания элементов */
-            margin-top: 70px; /* Отступ сверху, чтобы отделить от хедера */
-            margin-left: 10px; /* Отступ слева для контейнера с ссылками */
-        }
-        .links-container a {
-            text-decoration: none; /* Убираем подчеркивание */
-            color: white; /* Цвет текста ссылок, такой же как у мониторинга */
-            background-color: black; /* Черный фон для ссылок */
-            padding: 5px 10px; /* Внутренние отступы для кнопок */
-            border-radius: 5px; /* Закругленные углы для кнопок */
-            transition: background-color 0.3s; /* Плавный переход цвета фона */
-            margin-right: 15px; /* Отступы между ссылками */
-        }
-        .links-container a:hover {
-            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
-        }
-        .links-container a.select {
-            color: black; /* Черный текст для ссылки "Регистрация" */
-            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
-        }
-        .links-container a.select:hover {
-            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
-        }
-        .container {
-    display: flex; /* Используем Flexbox для центрирования */
-    flex-direction: column; /* Вертикальное направление */
-    align-items: center; /* Центрируем по горизонтали */
-    height: 100vh; /* Высота на 100% от видимой области */
-    justify-content: flex-start; /* Выравниваем содержимое по верхнему краю */
-    padding-top: 60px; /* Отступ сверху для контейнера */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px; /* Увеличиваем отступ (высота хедера + высота табов) */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-        .search-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: calc(100% - 200px);
+
+.search-form {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-gray);
 }
 
 .search-form h2 {
-    margin-bottom: 20px; /* Отступ снизу для заголовка */
-    text-align: center; /* Центрируем заголовок */
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+    font-size: 1.5em;
 }
 
 .form-group-container {
-    display: flex; /* Горизонтальное размещение групп */
-    justify-content: space-between; /* Распределение пространства между группами */
-    gap: 20px; /* Отступ между группами */
-    padding: 0 20px; /* Отступы слева и справа */
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0 10px;
+    flex-wrap: wrap;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-right: 20px;
-    width: 15%; /* Уменьшено для лучшего размещения на одной строке */
-}
-
-.form-group:last-child {
-    margin-right: 0; /* Убираем отступ у последней группы */
+    flex: 1;
+    min-width: 150px;
 }
 
 .search-form label {
-    margin-bottom: 5px;
-    color: #333;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9em;
 }
 
-.search-form input {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.search-form input,
+.search-form select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    transition: border-color 0.3s;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    border-color: #00BFFF;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
 }
 
 .search-form button {
-    padding: 10px;
-    margin-top: 10px;
-    width: 10%;
-    background-color: #00BFFF;
+    padding: 12px 20px;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    margin-left: auto; /* Перемещение кнопки вправо */
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: auto;
     display: block;
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 .search-form button:hover {
-    background-color: #0099CC;
+    background-color: #2980b9;
 }
 
-        .info-bar {
-            background-color: #f0f0f0; /* Светло-серый фон для полосы информации */
-            padding: 20px; /* Внутренние отступы полосы информации */
-            padding-left: 250px; /* Отступ слева (можете изменить значение) */
-            padding-right: 0px;
-            width: calc(100% - 450px); /* Ширина полосы информации на 100% относительно контейнера */
-            margin-top: 20px; /* Отступ сверху для разделения с формой */
-            border-radius: 5px; /* Закругленные углы полосы информации */
-            display: flex; /* Используем Flexbox для расположения меток в одну строку */
-            margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
-            gap: 380px; /* Отступы между записями (можете изменить значение) */
-        }
-        .info-bar label {
-            color: #333; /* Цвет текста меток в полосе информации */
-        }
-        .data-bar {
-        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
-        padding: 15px; /* Внутренние отступы полосы данных */
-        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
-        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
-        margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
-        border-radius: 5px; /* Закругленные углы полосы данных */
-        display: flex; /* Используем Flexbox для горизонтального расположения */
-        align-items: center; /* Центрируем элементы по вертикали */
-    }
-
-    .data-bar h3, .data-bar p {
-    background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
-        padding: 15px; /* Внутренние отступы полосы данных */
-        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
-        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
-        margin-left: 150px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
-        border-radius: 5px; /* Закругленные углы полосы данных */
-        display: flex; /* Используем Flexbox для горизонтального расположения */
-        align-items: center; /* Центрируем элементы по вертикали */
-        justify-content: space-between; /* Равномерное распределение элементов по ширине */
-    }
-        .data-bar img {
-        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
-
-
-        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
-        margin-left: 10px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
-        border-radius: 5px; /* Закругленные углы полосы данных */
-
-        align-items: center; /* Центрируем элементы по вертикали */
-        justify-content: flex-start;
-
-        }
-        .table {
-    width: 100%; /* Ширина таблицы на 100% относительно контейнера */
-    border-collapse: collapse; /* Убираем двойные границы между ячейками */
-    margin-top: 10px; /* Отступ сверху для разделения с полосой информации */
+    .table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-.table th, .table td {
-    border: 1px solid #ddd; /* Светло-серая граница для ячеек */
-    padding: 15px; /* Внутренние отступы ячеек */
-    text-align: left; /* Выравнивание текста по левому краю */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.table caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+    color: #333;
 }
 
 .table th {
-    background-color: #f2f2f2; /* Фон заголовков таблицы */
-    color: #333; /* Цвет текста заголовков */
-    font-weight: bold; /* Жирный шрифт для заголовков */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
 }
 
 .table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Светлый фон для четных строк */
+    background-color: var(--light-gray);
 }
 
 .table tr:hover {
-    background-color: #f1f1f1; /* Фон при наведении на строку */
+    background-color: #dfe6e9;
 }
-    </style>
+
+.table img {
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 0 5px;
+    filter: brightness(90%);
+}
+
+.table img:hover {
+    transform: scale(1.1);
+}
+
+/* Стили для пагинации */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.pagination a {
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination a.active {
+    background-color: #00BFFF;
+    color: white;
+    border: 1px solid #00BFFF;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--light-gray);
+}
+
+.pagination a.disabled {
+    color: #aaa;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .form-group-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .search-form button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .pagination a {
+        padding: 6px 12px;
+        margin: 0 2px;
+    }
+}
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 2px solid var(--light-gray);
+    width: 50%;
+    border-radius: 8px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+        .links-container {
+    display: flex;
+    background-color: #f8f9fa;
+    padding: 0;
+    margin-top: 70px; /* Соответствует высоте хедера */
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    position: sticky; /* Делаем табы "липкими" */
+    top: 70px; /* Прилипаем под хедером */
+    z-index: 999; /* Ниже хедера, но выше контента */
+}
+
+    /* Стили для отдельных табов */
+    .links-container a {
+        text-decoration: none;
+        color: #495057;
+        padding: 12px 24px;
+        margin-right: 2px;
+        font-weight: 500;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        background-color: #e9ecef;
+    }
+
+    /* Стиль для активного таба */
+    .links-container a.select {
+        background-color: white;
+        color: #00BFFF;
+        border-color: #dee2e6;
+        border-bottom-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* Эффект при наведении на неактивные табы */
+    .links-container a:not(.select):hover {
+        background-color: #f1f1f1;
+        color: #007bff;
+    }
+
+    /* Индикатор активного таба */
+    .links-container a.select::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #00BFFF;
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        .links-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .links-container a {
+            display: inline-block;
+            margin-right: -4px;
+            padding: 10px 16px;
+        }
+    }
+        .add-btn-container {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 999;
+}
+
+.add-btn {
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+
+}
+.btn-primary {
+        background-color: var(--secondary-color);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+.add-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.4));
+}
+</style>
 
 </head>
 <body>
     <div class="header">
-        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
-        <a href="registration_groups" class="select">Регистрация</a> <!-- Добавлен класс registration -->
+        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo">
+        <a href="registration_groups" class="select">Регистрация</a>
         <a href="monitoring">Мониторинг</a>
         <a href="print">Печать</a>
     <img
@@ -239,71 +428,293 @@
         <a href="registration_organizations">Организации</a>
     </div>
     <div class="container">
-        <form class="search-form" method="post">
-            <h2>Параметры поиска</h2> <!-- Заголовок -->
-            {% csrf_token %}
-            <div class="form-group-container"> <!-- Новый контейнер для групп -->
-            <div class="form-group">
-                <label>Поле 1</label>
-                {{ form.status }}
+        <form class="search-form" method="get" action="">
+            <h2>Параметры поиска</h2>
+            <div class="form-group-container">
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select name="status">
+                        <option value="">Все статусы</option>
+                        <option value="ожидание" {% if request.GET.status == 'ожидание' %}selected{% endif %}>Ожидание</option>
+                        <option value="зачислены" {% if request.GET.status == 'зачислены' %}selected{% endif %}>Зачислены</option>
+                        <option value="сдали" {% if request.GET.status == 'сдали' %}selected{% endif %}>Сдали</option>
+                        <option value="отчислены" {% if request.GET.status == 'отчислены' %}selected{% endif %}>Отчислены</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Направление</label>
+                    <input type="text" name="direction" value="{{ request.GET.direction }}" placeholder="Введите направление">
+                </div>
+                <div class="form-group">
+                    <label>Ответственное лицо</label>
+                    <input type="text" name="responsible_person" value="{{ request.GET.responsible_person }}" placeholder="ID ответственного">
+                </div>
+                <div class="form-group">
+                    <label>ID группы</label>
+                    <input type="text" name="group_id" value="{{ request.GET.group_id }}" placeholder="Введите ID группы">
+                </div>
             </div>
-            <div class="form-group">
-                <label>Поле 2</label>
-                {{ form.status }}
-            </div>
-            <div class="form-group">
-                <label>Поле 3</label>
-                {{ form.status }}
-            </div>
-            <div class="form-group">
-                <label>Поле 4</label>
-                {{ form.status }}
-            </div>
-            <div class="form-group">
-                <label>Поле 5</label>
-                {{ form.status }}
-            </div>
-        </div>
-        <button type="submit">Поиск</button>
-    </form>
-        <!-- Светло-серая полоса с метками -->
-
+            <button type="submit">Поиск</button>
+            {% if request.GET %}
+                <a href="?" style="margin-top: 20px; display: inline-block; text-decoration: none; color: white; background-color: #dc3545; padding: 10px 15px; border-radius: 5px; margin-right: 10px;">Сбросить фильтры</a>
+            {% endif %}
+        </form>
 
         <table class="table">
-            <caption>Заголовок таблицы</caption>
+            <caption>Список групп</caption>
                 <thead>
                     <tr>
                         <th></th>
                         <th>Номер группы</th>
                         <th>Статус</th>
                         <th>Направление</th>
-                        <th>Кол-во обучающихся</th>
-                        <th>Ответственное</th>
+                        <th>Ответственное лицо</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for el in groups %}
                     <tr>
-                        <td><img src="{% static 'app_main/images/redact.png' %}" alt="Redact" width="50" height="50">
-            <img src="{% static 'app_main/images/delete.png' %}" alt="Delete" width="50" height="50"></td>
-                        <td>{{ el.status }}</td>
-                        <td>{{ el.status }}</td>
-                        <td>{{ el.status }}</td>
+                        <td>
+    <img src="{% static 'app_main/images/redact.png' %}" alt="Redact" width="50" height="50"
+         class="edit-btn" data-group-id="{{ el.id }}" style="cursor: pointer;">
+    <img src="{% static 'app_main/images/delete.png' %}" alt="Delete" width="50" height="50"
+         class="delete-btn" data-group-id="{{ el.id }}" style="cursor: pointer;">
+</td>
+                        <td>{{ el.id }}</td>
                         <td>{{ el.status }}</td>
                         <td>{{ el.direction }}</td>
+                        <td>{{ el.responsible_person }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Нет данных, соответствующих вашему запросу</td>
                     </tr>
                 {% endfor %}
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Итого</td>
-                        <td>Сумма значений</td>
-                    </tr>
-                </tfoot>
         </table>
 
+        <!-- Пагинация -->
+        <div class="pagination">
+            {% if groups.has_previous %}
+                <a href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">«</a>
+                <a href="?page={{ groups.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">‹</a>
+            {% else %}
+                <a class="disabled">«</a>
+                <a class="disabled">‹</a>
+            {% endif %}
+
+            {% for num in groups.paginator.page_range %}
+                {% if groups.number == num %}
+                    <a class="active">{{ num }}</a>
+                {% elif num > groups.number|add:'-3' and num < groups.number|add:'3' %}
+                    <a href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if groups.has_next %}
+                <a href="?page={{ groups.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">›</a>
+                <a href="?page={{ groups.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">»</a>
+            {% else %}
+                <a class="disabled">›</a>
+                <a class="disabled">»</a>
+            {% endif %}
+        </div>
+        <div class="add-btn-container">
+    <img src="{% static 'app_main/images/save.png' %}"
+         alt="Add new group"
+         class="add-btn"
+         id="addNewGroupBtn"
+         title="Добавить новую группу">
+</div>
+
+<!-- Модальное окно добавления -->
+<div id="addModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Добавить новую группу</h2>
+        <form id="addForm">
+            <div class="form-group">
+                <label>Статус</label>
+                <select id="addStatus" class="form-control" required>
+                    <option value="ожидание">Ожидание</option>
+                    <option value="зачислены">Зачислены</option>
+                    <option value="сдали">Сдали</option>
+                    <option value="отчислены">Отчислены</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Направление</label>
+                <input type="text" id="addDirection" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Ответственное лицо (ID)</label>
+                <input type="number" id="addResponsiblePerson" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
     </div>
+</div>
+    </div>
+<div id="editModal" class="modal" style="display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 50%; border-radius: 8px;">
+        <span class="close" style="float: right; font-size: 28px; cursor: pointer;">&times;</span>
+        <h2>Редактирование группы</h2>
+        <form id="editForm">
+            <input type="hidden" id="editGroupId">
+            <div class="form-group">
+                <label>Статус</label>
+                <select id="editStatus" class="form-control">
+                    <option value="ожидание">Ожидание</option>
+                    <option value="зачислены">Зачислены</option>
+                    <option value="сдали">Сдали</option>
+                    <option value="отчислены">Отчислены</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Направление</label>
+                <input type="text" id="editDirection" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Ответственное лицо (ID)</label>
+                <input type="text" id="editResponsiblePerson" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #00BFFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Сохранить</button>
+        </form>
+    </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+// Открытие модального окна для редактирования
+$(document).on('click', '.delete-btn', function(e) {
+    e.preventDefault();
+    var groupId = $(this).data('group-id');
+    var row = $(this).closest('tr');
 
+    if(confirm('Вы уверены, что хотите удалить эту группу?')) {
+        $.ajax({
+            url: '/delete_group/',
+            type: 'POST',
+            data: {
+                'group_id': groupId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response.success) {
+                    // Плавное исчезновение строки
+                    row.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                    alert('Группа успешно удалена!');
+                } else {
+                    alert('Ошибка: ' + response.error);
+                }
+            },
+            error: function() {
+                alert('Произошла ошибка при удалении группы');
+            }
+        });
+    }
+});
+$(document).on('click', '.edit-btn', function() {
+    var groupId = $(this).data('group-id');
+    var row = $(this).closest('tr');
+
+    // Заполняем форму данными из строки таблицы
+    $('#editGroupId').val(groupId);
+    $('#editStatus').val(row.find('td:eq(2)').text());
+    $('#editDirection').val(row.find('td:eq(3)').text());
+    $('#editResponsiblePerson').val(row.find('td:eq(4)').text());
+
+    // Показываем модальное окно
+    $('#editModal').show();
+});
+
+// Закрытие модального окна
+$('.close').click(function() {
+    $('#editModal').hide();
+});
+
+// Обработка отправки формы
+$('#editForm').submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '/edit_group/',
+        type: 'POST',
+        data: {
+            'group_id': $('#editGroupId').val(),
+            'status': $('#editStatus').val(),
+            'direction': $('#editDirection').val(),
+            'responsible_person': $('#editResponsiblePerson').val(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.success) {
+                // Обновляем строку в таблице
+                var row = $('.edit-btn[data-group-id="' + response.data.id + '"]').closest('tr');
+                row.find('td:eq(2)').text(response.data.status);
+                row.find('td:eq(3)').text(response.data.direction);
+                row.find('td:eq(4)').text(response.data.responsible_person);
+
+                // Закрываем модальное окно
+                $('#editModal').hide();
+
+                alert('Данные успешно обновлены!');
+            } else {
+                alert('Ошибка: ' + response.error);
+            }
+        },
+        error: function() {
+            alert('Произошла ошибка при обновлении данных');
+        }
+    });
+});
+
+// Закрытие модального окна при клике вне его
+window.onclick = function(event) {
+    if (event.target == document.getElementById('editModal')) {
+        $('#editModal').hide();
+    }
+}
+    $('#addNewGroupBtn').click(function() {
+    $('#addModal').show();
+});
+
+// Закрытие модального окна добавления
+$('#addModal .close').click(function() {
+    $('#addModal').hide();
+});
+
+// Обработка формы добавления
+$('#addForm').submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '/add_group/',
+        type: 'POST',
+        data: {
+            'status': $('#addStatus').val(),
+            'direction': $('#addDirection').val(),
+            'responsible_person': $('#addResponsiblePerson').val(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.success) {
+                // Закрываем модальное окно
+                $('#addModal').hide();
+
+                // Обновляем страницу для отображения новой группы
+                location.reload();
+            } else {
+                alert('Ошибка: ' + response.error);
+            }
+        },
+        error: function() {
+            alert('Произошла ошибка при добавлении группы');
+        }
+    });
+});
+</script>
 </body>
 </html>

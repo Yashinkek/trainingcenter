@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Html autorization, registration">
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/delete.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/redact.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/save.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/print.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/TrainingCenterDjango/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/TrainingCenterDjango/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/image/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/monitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/monitoring.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_groups.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_groups.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_organizations.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_organizations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_students.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_students.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" afterDir="false" />
     </list>
@@ -35,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="html_autorization" />
+        <entry key="$PROJECT_DIR$" value="24.06-work-registration_groups" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
