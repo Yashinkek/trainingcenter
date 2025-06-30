@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Html autorization, registration">
-      <change afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/static/app_main/images/print.png" afterDir="false" />
+    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Html registration, print, monitoring">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/monitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/monitoring.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_groups.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_groups.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_organizations.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_organizations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_students.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/registration_students.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" afterDir="false" />
     </list>
@@ -92,11 +89,31 @@
       <option name="project" value="LOCAL" />
       <updated>1750244969594</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Html registration, print, monitoring">
+      <option name="closed" value="true" />
+      <created>1750934563669</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750934563669</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Html autorization, registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Html autorization, registration" />
+    <MESSAGE value="Html registration, print, monitoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Html registration, print, monitoring" />
   </component>
 </project>

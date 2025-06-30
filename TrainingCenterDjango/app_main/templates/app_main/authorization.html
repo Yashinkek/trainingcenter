@@ -4,78 +4,151 @@
 <head>
     <meta charset="UTF-8">
     <title>Авторизация</title>
-    <style>
-        body {
-            margin: 0; /* Убираем отступы по умолчанию */
-            display: flex; /* Используем flex для центрирования содержимого */
-            flex-direction: column; /* Располагаем элементы по вертикали */
-            justify-content: center; /* Центрируем по вертикали */
-            align-items: center; /* Центрируем по горизонтали */
-            height: 100vh; /* Высота на весь экран */
-            background-color: #f0f0f0; /* Фоновый цвет страницы */
-        }
-        .header {
-            background-color: #00BFFF; /* Лазурный цвет */
-            width: 100%; /* Ширина 100% */
-            display: flex; /* Используем flex для выравнивания элементов */
-            align-items: center; /* Центрируем по вертикали */
-            padding: 10px; /* Добавляем немного внутреннего отступа */
-            position: absolute; /* Фиксируем заголовок в верхней части страницы */
-            top: 0; /* Прикрепляем к верхней части */
-        }
-        .header img {
-            max-height: 50px; /* Ограничиваем высоту изображения */
-            margin-right: 10px; /* Отступ справа от изображения */
-        }
-        .header a {
-            text-decoration: none; /* Убираем подчеркивание */
-            color: white; /* Цвет текста */
-            padding: 10px 20px; /* Внутренние отступы для кнопок */
-            border-radius: 5px; /* Закругленные углы для кнопок */
-            transition: background-color 0.3s; /* Плавный переход цвета фона */
-            margin-left: 10px; /* Отступ между ссылками */
-        }
-        .header a:hover {
-            background-color: #0099CC; /* Цвет ссылки при наведении */
-        }
+       <style>
+    /* Общие стили */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background-color: var(--light-gray);
+    }
+
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --light-gray: #ecf0f1;
+        --dark-gray: #7f8c8d;
+        --white: #ffffff;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background-color: var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .header img {
+        max-height: 50px;
+        margin-right: 10px;
+    }
+
+    .header a {
+        text-decoration: none;
+        transition: background-color 0.3s;
+        margin-left: 30px;
+        color: var(--white);
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 15px;
+    }
+
+    .header a:hover {
+        background-color: #2980b9;
+    }
+
+    .header a.select {
+        color: var(--white);
+        background-color: var(--warning-color);
+    }
+
+    .header a.select:hover {
+        background-color: #e67e22;
+    }
+
+    /* Стили для формы */
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+        margin: 120px auto 0;
+        padding: 30px;
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 100px;
+        margin-bottom: -20px;
+    }
+
+    .login-form label {
+        display: block;
+        margin: 15px 0 5px;
+        color: var(--primary-color);
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border 0.3s;
+        box-sizing: border-box;
+    }
+
+    .login-form input:focus {
+        border-color: var(--secondary-color);
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .login-form button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Стили для сообщений об ошибках */
+    .errorlist {
+        color: var(--accent-color);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 480px) {
         .login-form {
-            background-color: white; /* Фоновый цвет формы */
-            padding: 20px; /* Внутренние отступы формы */
-            border-radius: 5px; /* Закругленные углы формы */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
-            margin-top: 60px; /* Отступ сверху для формы, чтобы отделить от заголовка */
-            width: 300px; /* Ширина формы */
+            margin: 100px 15px 0;
+            padding: 20px;
         }
-        .login-form label {
-            margin-bottom: 5px; /* Отступ снизу для меток */
-            display: block; /* Делаем метки блочными элементами для переноса на новую строку */
-            color: #333; /* Цвет текста меток */
-        }
-        .login-form input {
-            margin-bottom: 10px; /* Отступ между полями ввода */
-            padding: 10px; /* Внутренние отступы в полях ввода */
-            width: calc(100% - 22px); /* Ширина полей ввода на всю ширину формы с учетом отступов */
-            border: 1px solid #ccc; /* Граница полей ввода */
-            border-radius: 5px; /* Закругленные углы полей ввода */
-        }
-        .login-form button {
-            padding: 10px; /* Внутренние отступы кнопки */
-            width: 100%; /* Ширина кнопки на всю ширину формы */
-            background-color: #00BFFF; /* Цвет кнопки */
-            color: white; /* Цвет текста кнопки */
-            border: none; /* Убираем границу кнопки */
-            border-radius: 5px; /* Закругленные углы кнопки */
-            cursor: pointer; /* Курсор при наведении на кнопку */
-        }
-        .login-form button:hover {
-            background-color: #0099CC; /* Цвет кнопки при наведении */
-        }
+
         .form-title {
-            font-size: 24px; /* Размер шрифта заголовка */
-            margin-bottom: 20px; /* Отступ снизу для заголовка */
-            color: #333; /* Цвет текста заголовка */
+            margin-top: 80px;
         }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="header">
@@ -85,14 +158,19 @@
     <div class="form-title">Авторизация</div> <!-- Заголовок над формой -->
 
     <form class="login-form" method="post">
-        {% csrf_token %}
-        <label>Логин</label>
-        {{ form.login }}
-        <label>Пароль</label>
-        {{ form.password }}
-        <br>
-        <button type="submit">Войти</button>
-    </form>
+    {% csrf_token %}
+    <label>Логин</label>
+    {{ form.login }}
+    <label>Пароль</label>
+    {{ form.password }}
+    {% if error_message %}
+    <div class="error-message" style="color: var(--accent-color); margin-top: 10px;">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <br>
+    <button type="submit">Войти</button>
+</form>
 
     {{response}}
 </body>

@@ -15,6 +15,9 @@ class authorization_form(ModelForm):
     class Meta:
         model = users
         fields = ["login", "password"]
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
 
 class registration_groups_form(ModelForm):
     class Meta:

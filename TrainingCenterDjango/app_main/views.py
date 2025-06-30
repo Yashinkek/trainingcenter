@@ -1,11 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import students, groups, organizations, users, logs, group_composition
 #from .forms import create_groups_form, authorization_form, views_students_form, delete_groups_form
 from .services import create_group_service, authorizationservice, add_students_group_services, delete_group_service
 from . import forms
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
+import base64
+import requests
+import time
+from datetime import datetime, timedelta
+from io import BytesIO
+
 def index(request):
     g = groups.objects.all()
     return render(request, 'app_main/index.html', {'groups': g})
@@ -25,15 +31,21 @@ def create_group(request):
     }
     return render(request, 'app_main/create_group.html', context)
 
-def authorization(request):
-    response = ""
-    if request.method == 'POST':
-        response = authorizationservice(request)
-    form = forms.authorization_form()
 
+def authorization(request):
+    error_message = None
+
+    if request.method == 'POST':
+        result = authorizationservice(request)
+        if result:  # Если вернулся redirect (успешная авторизация)
+            return result
+        else:  # Если вернулось None (неудачная авторизация)
+            error_message = "Неверный логин или пароль"
+
+    form = forms.authorization_form()
     context = {
-        'form' : form,
-        'response' : response
+        'form': form,
+        'error_message': error_message
     }
     return render(request, 'app_main/authorization.html', context)
 
@@ -371,7 +383,7 @@ def monitoring(request):
 def print(request):
     students_list = students.objects.all()
 
-    # Фильтрация
+    # Фильтрация (ваш существующий код)
     student_id = request.GET.get('student_id')
     first_name = request.GET.get('first_name')
     last_name = request.GET.get('last_name')
@@ -421,3 +433,170 @@ def print(request):
     return render(request, 'app_main/print.html', {
         'students': page_obj,
     })
+
+
+def export_student_to_pdf(request):
+    # Конфигурационные параметры API
+    API_KEY = "dfkqhzo1uy8eamtsj55qudysi8yxogb84trgrxrer9fjrf33qd9y"
+    SUBSCRIPTION_ID = "685d380a184adf238ca03775"
+
+    # Получаем параметры из запроса
+    student_ids = request.GET.get('ids', '').split(',')
+    template_name = request.GET.get('template', 'certificate_a1')
+
+    # Определяем какой шаблон использовать
+    TEMPLATE_NAME = {
+        'certificate_a1': 'certificate_A1.frx',
+        'journal': 'journal_template.frx',
+        'expulsion_protocol': 'protocol_template.frx',
+        'certificate': 'certificate_template.frx',
+        'contract': 'contract_template.frx'
+    }.get(template_name, 'certificate_A1.frx')
+
+    # Фильтруем пустые ID
+    student_ids = [sid for sid in student_ids if sid]
+    if not student_ids:
+        return JsonResponse({"error": "Не выбраны студенты для печати"}, status=400)
+
+    # Получаем данные студентов из базы
+    from .models import students
+    students_to_print = students.objects.filter(id__in=student_ids)
+    if not students_to_print.exists():
+        return JsonResponse({"error": "Студенты не найдены"}, status=404)
+
+    # Подготовка заголовков для API
+    auth_string = f"apikey:{API_KEY}"
+    base64_auth = base64.b64encode(auth_string.encode('utf-8')).decode('utf-8')
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Basic {base64_auth}",
+        "Content-Type": "application/json"
+    }
+
+    try:
+        # 1. Получаем корневую папку шаблонов
+        root_response = requests.get(
+            "https://облако.моиотчеты.рф/api/rp/v1/Templates/Root",
+            params={"subscriptionId": SUBSCRIPTION_ID},
+            headers=headers
+        )
+        root_response.raise_for_status()
+        root_folder = root_response.json()
+        root_folder_id = root_folder['id']
+
+        # 2. Получаем список шаблонов в корневой папке
+        templates_response = requests.get(
+            f"https://облако.моиотчеты.рф/api/rp/v1/Templates/Folder/{root_folder_id}/ListFiles",
+            headers=headers
+        )
+        templates_response.raise_for_status()
+        templates = templates_response.json()
+
+        # 3. Находим нужный шаблон (обработка разных форматов ответа)
+        templates_list = []
+        if isinstance(templates, dict):
+            possible_list_keys = ['files', 'items', 'templates', 'data']
+            for key in possible_list_keys:
+                if key in templates and isinstance(templates[key], list):
+                    templates_list = templates[key]
+                    break
+            if not templates_list:
+                templates_list = [templates]
+        else:
+            templates_list = templates
+
+        template = None
+        for item in templates_list:
+            if isinstance(item, dict) and str(item.get('name', '')).lower() == TEMPLATE_NAME.lower():
+                template = item
+                break
+
+        if not template:
+            return JsonResponse({
+                "error": f"Шаблон {TEMPLATE_NAME} не найден",
+            }, status=404)
+
+        template_id = template['id']
+
+        # Если один студент - возвращаем PDF напрямую
+        if len(student_ids) == 1:
+            student = students_to_print.first()
+            today = datetime.now().strftime("%d.%m.%Y")
+            overdue_date = (datetime.now() + timedelta(days=365 * 10)).strftime("%d.%m.%Y")
+
+            export_data = {
+                "fileName": f"{template_name}_{student.id}.pdf",
+                "format": "Pdf",
+                "locale": "ru-RU",
+                "reportParameters": {
+                    "first_name": student.first_name or "",
+                    "last_name": student.last_name or "",
+                    "surname": student.surname or "",
+                    "date_of_birth": student.date_of_birth.strftime("%d.%m.%Y") if student.date_of_birth else "",
+                    "address_birth": student.address_birth or "",
+                    "today": today,
+                    "overdue": overdue_date,
+                }
+            }
+
+            export_response = requests.post(
+                f"https://облако.моиотчеты.рф/api/rp/v1/Templates/File/{template_id}/Export",
+                json=export_data,
+                headers=headers
+            )
+            export_response.raise_for_status()
+            export_id = export_response.json()['id']
+
+            # Ожидаем завершения экспорта
+            max_attempts = 10
+            for attempt in range(max_attempts):
+                status_response = requests.get(
+                    f"https://облако.моиотчеты.рф/api/rp/v1/Exports/File/{export_id}",
+                    headers=headers
+                )
+                status_response.raise_for_status()
+                status_info = status_response.json()
+
+                if status_info['status'] == 'Success':
+                    break
+                elif status_info['status'] == 'Failed':
+                    return JsonResponse({
+                        "error": "Экспорт отчета завершился с ошибкой",
+                        "details": status_info
+                    }, status=500)
+
+                time.sleep(1)
+            else:
+                return JsonResponse({
+                    "error": "Превышено время ожидания экспорта",
+                    "export_id": export_id
+                }, status=408)
+
+            # Скачиваем и возвращаем PDF
+            pdf_response = requests.get(
+                f"https://облако.моиотчеты.рф/download/e/{export_id}",
+                headers={"Authorization": f"Basic {base64_auth}"}
+            )
+            pdf_response.raise_for_status()
+
+            response = HttpResponse(pdf_response.content, content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{template_name}_{student.id}.pdf"'
+            return response
+
+    except requests.exceptions.RequestException as e:
+        error_details = {"text": str(e)}
+        if hasattr(e, 'response'):
+            try:
+                error_details = e.response.json()
+            except:
+                error_details = {"text": e.response.text}
+
+        return JsonResponse({
+            "error": "Ошибка при работе с API МоиОтчеты",
+            "details": error_details
+        }, status=500)
+    except Exception as e:
+        return JsonResponse({
+            "error": "Внутренняя ошибка сервера",
+            "details": str(e)
+        }, status=500)

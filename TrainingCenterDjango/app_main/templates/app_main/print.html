@@ -448,31 +448,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
-        // Обработка кнопки печати выбранных
-        $('#printSelected').click(function() {
-            var selectedIds = [];
-            $('.student-checkbox:checked').each(function() {
-                selectedIds.push($(this).data('student-id'));
-            });
-
-            if (selectedIds.length === 0) {
-                alert('Пожалуйста, выберите хотя бы одного студента для печати');
-                return;
-            }
-
-            // Получаем выбранный шаблон
-            var selectedTemplate = $('input[name="template"]:checked').val();
-
-            // Открываем новое окно для печати с передачей выбранных ID и шаблона
-            var printUrl = '/print/students/?ids=' + selectedIds.join(',') + '&template=' + selectedTemplate;
-            window.open(printUrl, '_blank');
+    // Обработка кнопки печати выбранных
+    $('#printSelected').click(function() {
+        var selectedIds = [];
+        $('.student-checkbox:checked').each(function() {
+            selectedIds.push($(this).data('student-id'));
         });
 
-        // Обработка выделения всех чекбоксов
-        $('#selectAll').click(function() {
-            $('.student-checkbox').prop('checked', this.checked);
-        });
+        if (selectedIds.length === 0) {
+            alert('Пожалуйста, выберите хотя бы одного студента для печати');
+            return;
+        }
+
+        // Получаем выбранный шаблон
+        var selectedTemplate = $('input[name="template"]:checked').val();
+
+        // Используем правильный URL из вашего urlpatterns
+        var printUrl = '/export-student-to-pdf/?ids=' + selectedIds.join(',') + '&template=' + selectedTemplate;
+        window.location.href = printUrl;
     });
+
+    // Обработка выделения всех чекбоксов
+    $('#selectAll').click(function() {
+        $('.student-checkbox').prop('checked', this.checked);
+    });
+});
     </script>
 </body>
 </html>

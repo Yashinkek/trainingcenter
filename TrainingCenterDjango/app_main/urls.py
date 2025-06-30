@@ -15,6 +15,8 @@ urlpatterns = [
     path('add_group/', views.add_group, name='add_group'),
     path('monitoring', views.monitoring, name='monitoring'),
     path('print', views.print, name='print'),
+path('export-student-to-pdf/', views.export_student_to_pdf, name='export_student_to_pdf'),
+path('print/students/', views.export_student_to_pdf, name='print_students'),
     path('registration_students', views.registration_students, name='registration_students'),
     path('delete_student/', views.delete_student, name='delete_student'),
     path('edit_student/', views.edit_student, name='edit_student'),
@@ -23,5 +25,5 @@ urlpatterns = [
     path('delete_organization/', views.delete_organization, name='delete_organization'),
     path('edit_organization/', views.edit_organization, name='edit_organization'),
     path('add_organization/', views.add_organization, name='add_organization'),
-    path('registration', views.registration, name='registration')
+    path('registration', views.registration, name='registration'),
 ]
