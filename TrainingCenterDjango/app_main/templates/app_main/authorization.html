@@ -1,21 +1,177 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Авторизация</title>
+       <style>
+    /* Общие стили */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background-color: var(--light-gray);
+    }
+
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --light-gray: #ecf0f1;
+        --dark-gray: #7f8c8d;
+        --white: #ffffff;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background-color: var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .header img {
+        max-height: 50px;
+        margin-right: 10px;
+    }
+
+    .header a {
+        text-decoration: none;
+        transition: background-color 0.3s;
+        margin-left: 30px;
+        color: var(--white);
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 15px;
+    }
+
+    .header a:hover {
+        background-color: #2980b9;
+    }
+
+    .header a.select {
+        color: var(--white);
+        background-color: var(--warning-color);
+    }
+
+    .header a.select:hover {
+        background-color: #e67e22;
+    }
+
+    /* Стили для формы */
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+        margin: 120px auto 0;
+        padding: 30px;
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 100px;
+        margin-bottom: -20px;
+    }
+
+    .login-form label {
+        display: block;
+        margin: 15px 0 5px;
+        color: var(--primary-color);
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border 0.3s;
+        box-sizing: border-box;
+    }
+
+    .login-form input:focus {
+        border-color: var(--secondary-color);
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .login-form button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Стили для сообщений об ошибках */
+    .errorlist {
+        color: var(--accent-color);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 480px) {
+        .login-form {
+            margin: 100px 15px 0;
+            padding: 20px;
+        }
+
+        .form-title {
+            margin-top: 80px;
+        }
+    }
+</style>
 </head>
 <body>
-<a href ="{%url 'home'%}"> Home</a>
-<br>
+    <div class="header">
+        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
+    </div>
 
-<h1>Введите данные для авторизации</h1>
-<form method="post">
+    <div class="form-title">Авторизация</div> <!-- Заголовок над формой -->
+
+    <form class="login-form" method="post">
     {% csrf_token %}
+    <label>Логин</label>
     {{ form.login }}
+    <label>Пароль</label>
     {{ form.password }}
+    {% if error_message %}
+    <div class="error-message" style="color: var(--accent-color); margin-top: 10px;">
+        {{ error_message }}
+    </div>
+    {% endif %}
     <br>
-    <button type="submit"> Войти </button>
+    <button type="submit">Войти</button>
 </form>
-{{response}}
+
+    {{response}}
 </body>
 </html>

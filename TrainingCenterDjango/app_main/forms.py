@@ -14,7 +14,24 @@ class delete_groups_form(forms.Form):
 class authorization_form(ModelForm):
     class Meta:
         model = users
-        fields = ["login", "password", "title"]
+        fields = ["login", "password"]
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+class registration_groups_form(ModelForm):
+    class Meta:
+        model = groups
+        fields = ["status", "direction", "responsible_person"]
+class registration_students_form(ModelForm):
+    class Meta:
+        model = students
+        fields = ["first_name", "last_name", "surname", "passport_number", "date_of_birth", "address_birth", "address", "snils", "education", "passport_issued", "organization", "medical_certificate"]
+
+class registration_organizations_form(ModelForm):
+    class Meta:
+        model = organizations
+        fields = ["name", "ogrn", "inn", "kpp"]
 
 class views_students_form(forms.Form):
     class Meta:

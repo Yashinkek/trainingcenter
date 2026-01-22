@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Commit #2">
+    <list default="true" id="931c5196-1cc2-456d-8509-bbd3c2ee67fa" name="Changes" comment="Html registration, print, monitoring">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/authorization.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/templates/app_main/print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCenterDjango/app_main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="24.06-work-registration_groups" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,10 +50,21 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Python.services.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;orm#1&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;git-widget-placeholder&quot;: &quot;html__table&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/py/pythonPR/TrainingCenter/TrainingCenterDjango/app_main/static/app_main/images&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\py\pythonPR\TrainingCenter\TrainingCenterDjango\app_main\static\app_main\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\py\pythonPR\TrainingCenter\TrainingCenterDjango\app_main\static\app_main\images" />
+      <recent name="C:\py\pythonPR\TrainingCenter\TrainingCenterDjango\app_main\templates\app_main" />
+      <recent name="C:\py\pythonPR\TrainingCenter\TrainingCenterDjango\app_main\image" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -67,28 +81,39 @@
       <option name="presentableId" value="Default" />
       <updated>1748433759336</updated>
     </task>
-    <task id="LOCAL-00001" summary="Commit #1">
+    <task id="LOCAL-00001" summary="Html autorization, registration">
       <option name="closed" value="true" />
-      <created>1748777207984</created>
+      <created>1750244969594</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1748777207984</updated>
+      <updated>1750244969594</updated>
     </task>
-    <task id="LOCAL-00002" summary="Commit #2">
+    <task id="LOCAL-00002" summary="Html registration, print, monitoring">
       <option name="closed" value="true" />
-      <created>1748848172067</created>
+      <created>1750934563669</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1748848172067</updated>
+      <updated>1750934563669</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit #1" />
-    <MESSAGE value="Commit #2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #2" />
+    <MESSAGE value="Html autorization, registration" />
+    <MESSAGE value="Html registration, print, monitoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Html registration, print, monitoring" />
   </component>
 </project>

@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        html, body {
+            margin: 0; /* Убираем отступы по умолчанию */
+            padding: 0; /* Убираем внутренние отступы */
+            width: 100%; /* Ширина на 100% */
+            height: 100%; /* Высота на 100% */
+            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+            font-family: Arial, sans-serif; /* Шрифт для всей страницы */
+        }
+        .header {
+            background-color: #00BFFF; /* Лазурный цвет */
+            width: 100%; /* Ширина 100% */
+            display: flex; /* Используем flex для выравнивания элементов */
+            align-items: center; /* Центрируем по вертикали */
+            padding: 10px; /* Добавляем немного внутреннего отступа */
+            position: absolute; /* Фиксируем заголовок в верхней части страницы */
+            top: 0; /* Прикрепляем к верхней части */
+        }
+        .header img {
+            max-height: 50px; /* Ограничиваем высоту изображения */
+            margin-right: 10px; /* Отступ справа от изображения */
+        }
+        .header a {
+            text-decoration: none; /* Убираем подчеркивание */
+            color: white; /* Цвет текста по умолчанию для ссылок */
+            background-color: black; /* Черный фон для ссылок */
+            padding: 5px 10px; /* Внутренние отступы для кнопок */
+            border-radius: 5px; /* Закругленные углы для кнопок */
+            transition: background-color 0.3s; /* Плавный переход цвета фона */
+            margin-left: 30px; /* Отступ между ссылками */
+        }
+        .header a:hover {
+            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+        }
+        .header a.select {
+            color: black; /* Черный текст для ссылки "Регистрация" */
+            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+        }
+        .header a.select:hover {
+            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+        }
+        .exit-icon {
+            margin-left: auto; /* Отталкиваем изображение вправо */
+            max-height: 50px; /* Ограничиваем высоту изображения выходного значка */
+        }
+        .links-container {
+            display: flex; /* Используем flex для выравнивания элементов */
+            margin-top: 70px; /* Отступ сверху, чтобы отделить от хедера */
+            margin-left: 10px; /* Отступ слева для контейнера с ссылками */
+        }
+        .links-container a {
+            text-decoration: none; /* Убираем подчеркивание */
+            color: white; /* Цвет текста ссылок, такой же как у мониторинга */
+            background-color: black; /* Черный фон для ссылок */
+            padding: 5px 10px; /* Внутренние отступы для кнопок */
+            border-radius: 5px; /* Закругленные углы для кнопок */
+            transition: background-color 0.3s; /* Плавный переход цвета фона */
+            margin-right: 15px; /* Отступы между ссылками */
+        }
+        .links-container a:hover {
+            background-color: #333; /* Цвет фона ссылки при наведении (темнее черного) */
+        }
+        .links-container a.select {
+            color: black; /* Черный текст для ссылки "Регистрация" */
+            background-color: #df8926; /* Рыжий песок для фона ссылки "Регистрация" */
+        }
+        .links-container a.select:hover {
+            background-color: #B8860B; /* Цвет фона при наведении (темнее рыжего песка) */
+        }
+        .container {
+    display: flex; /* Используем Flexbox для центрирования */
+    flex-direction: column; /* Вертикальное направление */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота на 100% от видимой области */
+    justify-content: flex-start; /* Выравниваем содержимое по верхнему краю */
+    padding-top: 60px; /* Отступ сверху для контейнера */
+}
+        .search-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 200px);
+}
+
+.search-form h2 {
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+    text-align: center; /* Центрируем заголовок */
+}
+
+.form-group-container {
+    display: flex; /* Горизонтальное размещение групп */
+    justify-content: space-between; /* Распределение пространства между группами */
+    gap: 20px; /* Отступ между группами */
+    padding: 0 20px; /* Отступы слева и справа */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 15%; /* Уменьшено для лучшего размещения на одной строке */
+}
+
+.form-group:last-child {
+    margin-right: 0; /* Убираем отступ у последней группы */
+}
+
+.search-form label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.search-form input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 10%;
+    background-color: #00BFFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto; /* Перемещение кнопки вправо */
+    display: block;
+}
+
+.search-form button:hover {
+    background-color: #0099CC;
+}
+
+        .info-bar {
+            background-color: #f0f0f0; /* Светло-серый фон для полосы информации */
+            padding: 20px; /* Внутренние отступы полосы информации */
+            padding-left: 250px; /* Отступ слева (можете изменить значение) */
+            padding-right: 0px;
+            width: calc(100% - 450px); /* Ширина полосы информации на 100% относительно контейнера */
+            margin-top: 20px; /* Отступ сверху для разделения с формой */
+            border-radius: 5px; /* Закругленные углы полосы информации */
+            display: flex; /* Используем Flexbox для расположения меток в одну строку */
+            margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+            gap: 380px; /* Отступы между записями (можете изменить значение) */
+        }
+        .info-bar label {
+            color: #333; /* Цвет текста меток в полосе информации */
+        }
+        .data-bar {
+        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+        padding: 15px; /* Внутренние отступы полосы данных */
+        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 0px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+        display: flex; /* Используем Flexbox для горизонтального расположения */
+        align-items: center; /* Центрируем элементы по вертикали */
+    }
+
+    .data-bar h3, .data-bar p {
+    background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+        padding: 15px; /* Внутренние отступы полосы данных */
+        width: calc(100% - 200px); /* Ширина полосы данных на 100% относительно контейнера */
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 150px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+        display: flex; /* Используем Flexbox для горизонтального расположения */
+        align-items: center; /* Центрируем элементы по вертикали */
+        justify-content: space-between; /* Равномерное распределение элементов по ширине */
+    }
+        .data-bar img {
+        background-color: #e0e0e0; /* Светло-серый фон для полосы данных */
+
+
+        margin-top: 10px; /* Отступ сверху для разделения с предыдущими элементами */
+        margin-left: 10px; /* Дополнительный отступ от левой границы страницы (можете изменить значение) */
+        border-radius: 5px; /* Закругленные углы полосы данных */
+
+        align-items: center; /* Центрируем элементы по вертикали */
+        justify-content: flex-start;
+
+        }
+        .table {
+    width: 100%; /* Ширина таблицы на 100% относительно контейнера */
+    border-collapse: collapse; /* Убираем двойные границы между ячейками */
+    margin-top: 10px; /* Отступ сверху для разделения с полосой информации */
+}
+
+.table th, .table td {
+    border: 1px solid #ddd; /* Светло-серая граница для ячеек */
+    padding: 15px; /* Внутренние отступы ячеек */
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.table th {
+    background-color: #f2f2f2; /* Фон заголовков таблицы */
+    color: #333; /* Цвет текста заголовков */
+    font-weight: bold; /* Жирный шрифт для заголовков */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Светлый фон для четных строк */
+}
+
+.table tr:hover {
+    background-color: #f1f1f1; /* Фон при наведении на строку */
+}
+    </style>
+
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo"> <!-- Замените image/logo.png на путь к вашему изображению -->
+        <a href="registration_groups" class="select">Регистрация</a> <!-- Добавлен класс registration -->
+        <a href="monitoring">Мониторинг</a>
+        <a href="print">Печать</a>
+        <img src="image/exit.png" alt="Exit" class="exit-icon"> <!-- Класс для иконки выхода -->
+    </div>
+
+    <div class="links-container">
+        <a href="registration_groups" class="select">Группы</a>
+        <a href="registration_students">Обучающиеся</a>
+        <a href="registration_organizations">Организации</a>
+    </div>
+    <div class="container">
+        <form class="search-form" method="post">
+            <h2>Параметры поиска</h2> <!-- Заголовок -->
+            {% csrf_token %}
+            <div class="form-group-container"> <!-- Новый контейнер для групп -->
+            <div class="form-group">
+                <label>Поле 1</label>
+                {{ form.status }}
+            </div>
+            <div class="form-group">
+                <label>Поле 2</label>
+                {{ form.status }}
+            </div>
+            <div class="form-group">
+                <label>Поле 3</label>
+                {{ form.status }}
+            </div>
+            <div class="form-group">
+                <label>Поле 4</label>
+                {{ form.status }}
+            </div>
+            <div class="form-group">
+                <label>Поле 5</label>
+                {{ form.status }}
+            </div>
+        </div>
+        <button type="submit">Поиск</button>
+    </form>
+        <!-- Светло-серая полоса с метками -->
+
+
+        <table class="table">
+            <caption>Заголовок таблицы</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Номер группы</th>
+                        <th>Статус</th>
+                        <th>Направление</th>
+                        <th>Кол-во обучающихся</th>
+                        <th>Ответственное</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for el in groups %}
+                    <tr>
+                        <td><img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo">
+            <img src="image/logo.png" alt="Logo"></td>
+                        <td>{{ el.status }}</td>
+                        <td>{{ el.status }}</td>
+                        <td>{{ el.status }}</td>
+                        <td>{{ el.status }}</td>
+                        <td>{{ el.direction }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Итого</td>
+                        <td>Сумма значений</td>
+                    </tr>
+                </tfoot>
+        </table>
+
+    </div>
+
+
+</body>
+</html>

@@ -151,11 +151,13 @@ class users(models.Model):
             self.password = password
         self.save()
 
-    def authorization(cls, query):
-        return cls.objects.filter(
-            models.Q(login__icontains=query) |
-            models.Q(password__icontains=query)
-        )
+    @classmethod
+    def authorization(cls, login, password):
+        try:
+            user = cls.objects.get(login=login, password=password)
+            return user
+        except cls.DoesNotExist:
+            return None
     def rule_check(cls, query):
         return cls.objects.filter(
             models.Q(id__icontains=query)

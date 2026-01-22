@@ -1,0 +1,863 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+    /* Общие стили */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+    }
+    :root {
+        --primary-color: #2c3e50;    /* Темно-синий вместо ярко-голубого */
+        --secondary-color: #3498db;  /* Приятный синий */
+        --accent-color: #e74c3c;    /* Акцентный красный */
+        --success-color: #27ae60;   /* Зеленый для успешных действий */
+        --warning-color: #f39c12;   /* Оранжевый для предупреждений */
+        --light-gray: #ecf0f1;      /* Светло-серый фон */
+        --dark-gray: #7f8c8d;       /* Темно-серый для текста */
+        --white: #ffffff;
+    }
+
+    /* Оставляем все стили для хедера и других элементов без изменений */
+    .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed; /* Меняем absolute на fixed */
+    top: 0;
+    z-index: 1000; /* Убедимся, что хедер поверх всего */
+    background-color: var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+        .header img {
+            max-height: 50px;
+            margin-right: 10px;
+        }
+        .header a {
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-left: 30px;
+            color: var(--white);
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 15px;
+        }
+        .header a:hover {
+            background-color: #2980b9;
+        }
+        .header a.select {
+            color: var(--white);
+            background-color: var(--warning-color);
+        }
+        .header a.select:hover {
+            background-color: #e67e22;
+        }
+        .exit-icon {
+            margin-left: auto;
+            max-height: 50px;
+        }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px; /* Увеличиваем отступ (высота хедера + высота табов) */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-form {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-gray);
+}
+
+.search-form h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.form-group-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0 10px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 150px;
+}
+
+.search-form label {
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.search-form input,
+.search-form select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    transition: border-color 0.3s;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    border-color: #00BFFF;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+}
+
+.search-form button {
+    padding: 12px 20px;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.search-form button:hover {
+    background-color: #2980b9;
+}
+
+    .table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.table caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+    color: #333;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.table tr:nth-child(even) {
+    background-color: var(--light-gray);
+}
+
+.table tr:hover {
+    background-color: #dfe6e9;
+}
+
+.table img {
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 0 5px;
+    filter: brightness(90%);
+}
+
+.table img:hover {
+    transform: scale(1.1);
+}
+
+/* Стили для пагинации */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.pagination a {
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination a.active {
+    background-color: #00BFFF;
+    color: white;
+    border: 1px solid #00BFFF;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--light-gray);
+}
+
+.pagination a.disabled {
+    color: #aaa;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .form-group-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .search-form button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .pagination a {
+        padding: 6px 12px;
+        margin: 0 2px;
+    }
+}
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    overflow-y: auto; /* Добавляем прокрутку */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 2px solid var(--light-gray);
+    width: 50%;
+    border-radius: 8px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+        .links-container {
+    display: flex;
+    background-color: #f8f9fa;
+    padding: 0;
+    margin-top: 70px; /* Соответствует высоте хедера */
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    position: sticky; /* Делаем табы "липкими" */
+    top: 70px; /* Прилипаем под хедером */
+    z-index: 999; /* Ниже хедера, но выше контента */
+}
+
+    /* Стили для отдельных табов */
+    .links-container a {
+        text-decoration: none;
+        color: #495057;
+        padding: 12px 24px;
+        margin-right: 2px;
+        font-weight: 500;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        background-color: #e9ecef;
+    }
+
+    /* Стиль для активного таба */
+    .links-container a.select {
+        background-color: white;
+        color: #00BFFF;
+        border-color: #dee2e6;
+        border-bottom-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* Эффект при наведении на неактивные табы */
+    .links-container a:not(.select):hover {
+        background-color: #f1f1f1;
+        color: #007bff;
+    }
+
+    /* Индикатор активного таба */
+    .links-container a.select::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #00BFFF;
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        .links-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .links-container a {
+            display: inline-block;
+            margin-right: -4px;
+            padding: 10px 16px;
+        }
+    }
+        .add-btn-container {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 999;
+}
+
+.add-btn {
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+
+}
+.btn-primary {
+        background-color: var(--secondary-color);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+.add-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.4));
+}
+</style>
+
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'app_main/images/logo.png' %}" alt="Logo">
+        <a href="registration_groups" class="select">Регистрация</a>
+        <a href="monitoring">Мониторинг</a>
+        <a href="print">Печать</a>
+    <img
+    src="{% static 'app_main/images/exit.png' %}"
+    alt="Exit"
+    class="exit-icon"
+    onclick="window.location.href='/authorization'"
+    style="cursor: pointer;"
+>
+    </div>
+
+    <div class="links-container">
+        <a href="registration_groups">Группы</a>
+        <a href="registration_students" class="select">Обучающиеся</a>
+        <a href="registration_organizations">Организации</a>
+    </div>
+    <div class="container">
+        <form class="search-form" method="get" action="">
+            <h2>Параметры поиска</h2>
+            <div class="form-group-container">
+                <div class="form-group">
+                    <label>Номер студента</label>
+                    <input type="text" name="student_id" value="{{ request.GET.student_id }}" placeholder="Введите номер">
+                </div>
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" name="first_name" value="{{ request.GET.first_name }}" placeholder="Введите имя">
+                </div>
+                <div class="form-group">
+                    <label>Фамилия</label>
+                    <input type="text" name="last_name" value="{{ request.GET.last_name }}" placeholder="Фамилия">
+                </div>
+                <div class="form-group">
+                    <label>Отчество</label>
+                    <input type="text" name="surname" value="{{ request.GET.surname }}" placeholder="Отчество">
+                </div>
+                <div class="form-group">
+                    <label>Номер паспорта</label>
+                    <input type="text" name="passport_number" value="{{ request.GET.passport_number }}" placeholder="Номер паспорта">
+                </div>
+                <div class="form-group">
+                    <label>День рождения</label>
+                    <input type="text" name="date_of_birth" value="{{ request.GET.date_of_birth }}" placeholder="День рождения">
+                </div>
+                <div class="form-group">
+                    <label>Место рождения</label>
+                    <input type="text" name="address_birth" value="{{ request.GET.address_birth }}" placeholder="Место рождения">
+                </div>
+                <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" name="address" value="{{ request.GET.address }}" placeholder="Введите адрес">
+                </div>
+                <div class="form-group">
+                    <label>СНИЛС</label>
+                    <input type="text" name="snils" value="{{ request.GET.snils }}" placeholder="Введите СНИЛС">
+                </div>
+                <div class="form-group">
+                    <label>Образование</label>
+                    <input type="text" name="education" value="{{ request.GET.education }}" placeholder="Введите образование">
+                </div>
+                <div class="form-group">
+                    <label>Паспорт выдан</label>
+                    <input type="text" name="passport_issued" value="{{ request.GET.passport_issued }}" placeholder="Введите кем выдан паспорт">
+                </div>
+                <div class="form-group">
+                    <label>Организация</label>
+                    <input type="text" name="organization" value="{{ request.GET.organization }}" placeholder="Введите ораганизацию">
+                </div>
+                <div class="form-group">
+                    <label>Медицинская справка</label>
+                    <input type="text" name="medical_certificate" value="{{ request.GET.medical_certificate }}" placeholder="Введите номер медицинской справки">
+                </div>
+            </div>
+            <button type="submit">Поиск</button>
+            {% if request.GET %}
+                <a href="?" style="margin-top: 20px; display: inline-block; text-decoration: none; color: white; background-color: #dc3545; padding: 10px 15px; border-radius: 5px; margin-right: 10px;">Сбросить фильтры</a>
+            {% endif %}
+        </form>
+
+        <table class="table">
+            <caption>Список групп</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Номер студента</th>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Отчество</th>
+                        <th>Номер паспорта</th>
+                        <th>День рождения</th>
+                        <th>Место рождения</th>
+                        <th>Адрес</th>
+                        <th>СНИЛС</th>
+                        <th>Образование</th>
+                        <th>Паспорт выдан</th>
+                        <th>Организация</th>
+                        <th>Медицинская справка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for el in students %}
+                    <tr>
+                        <td>
+    <img src="{% static 'app_main/images/redact.png' %}" alt="Redact" width="50" height="50"
+         class="edit-btn" data-student-id="{{ el.id }}" style="cursor: pointer;">
+    <img src="{% static 'app_main/images/delete.png' %}" alt="Delete" width="50" height="50"
+         class="delete-btn" data-student-id="{{ el.id }}" style="cursor: pointer;">
+</td>
+                        <td>{{ el.id }}</td>
+                        <td>{{ el.first_name }}</td>
+                        <td>{{ el.last_name }}</td>
+                        <td>{{ el.surname }}</td>
+                        <td>{{ el.passport_number }}</td>
+                        <td>{{ el.date_of_birth }}</td>
+                        <td>{{ el.address_birth }}</td>
+                        <td>{{ el.address }}</td>
+                        <td>{{ el.snils }}</td>
+                        <td>{{ el.education }}</td>
+                        <td>{{ el.passport_issued }}</td>
+                        <td>{{ el.organization }}</td>
+                        <td>{{ el.medical_certificate }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Нет данных, соответствующих вашему запросу</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            {% if students.has_previous %}
+                <a href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">«</a>
+                <a href="?page={{ students.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">‹</a>
+            {% else %}
+                <a class="disabled">«</a>
+                <a class="disabled">‹</a>
+            {% endif %}
+
+            {% for num in students.paginator.page_range %}
+                {% if students.number == num %}
+                    <a class="active">{{ num }}</a>
+                {% elif num > students.number|add:'-3' and num < students.number|add:'3' %}
+                    <a href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if students.has_next %}
+                <a href="?page={{ students.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">›</a>
+                <a href="?page={{ students.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">»</a>
+            {% else %}
+                <a class="disabled">›</a>
+                <a class="disabled">»</a>
+            {% endif %}
+        </div>
+        <div class="add-btn-container">
+    <img src="{% static 'app_main/images/save.png' %}"
+         alt="Add new group"
+         class="add-btn"
+         id="addNewGroupBtn"
+         title="Добавить новую группу">
+</div>
+
+<!-- Модальное окно добавления -->
+<div id="addModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Добавить нового студента</h2>
+        <form id="addForm">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" id="add_first_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" id="add_last_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Отчество</label>
+                <input type="text" id="add_surname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Паспот</label>
+                <input type="text" id="add_passport_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>День рождения</label>
+                <input type="text" id="add_date_of_birth" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Место рождения</label>
+                <input type="text" id="add_address_birth" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Адрес</label>
+                <input type="text" id="add_address" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>СНИЛС</label>
+                <input type="text" id="add_snils" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Образование</label>
+                <input type="text" id="add_education" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Паспорт выдан</label>
+                <input type="text" id="add_passport_issued" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Организация</label>
+                <input type="text" id="add_organization" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Медицинская справка</label>
+                <input type="text" id="add_medical_certificate" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #00BFFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Добавить</button>
+        </form>
+    </div>
+</div>
+    </div>
+
+<div id="editModal" class="modal" style="display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 50%; border-radius: 8px;">
+        <span class="close" style="float: right; font-size: 28px; cursor: pointer;">&times;</span>
+        <h2>Редактирование группы</h2>
+        <form id="editForm">
+            <input type="hidden" id="edit_student_id">
+            <input type="hidden" id="editGroupId">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" id="edit_first_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" id="edit_last_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Отчество</label>
+                <input type="text" id="edit_surname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Паспот</label>
+                <input type="text" id="edit_passport_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>День рождения</label>
+                <input type="text" id="edit_date_of_birth" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Место рождения</label>
+                <input type="text" id="edit_address_birth" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Адрес</label>
+                <input type="text" id="edit_address" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>СНИЛС</label>
+                <input type="text" id="edit_snils" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Образование</label>
+                <input type="text" id="edit_education" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Паспорт выдан</label>
+                <input type="text" id="edit_passport_issued" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Организация</label>
+                <input type="text" id="edit_organization" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Медицинская справка</label>
+                <input type="text" id="edit_medical_certificate" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #00BFFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+// Открытие модального окна для редактирования
+$(document).on('click', '.delete-btn', function(e) {
+    e.preventDefault();
+    var studentId = $(this).data('student-id');
+    var row = $(this).closest('tr');
+
+    if(confirm('Вы уверены, что хотите удалить этого студента?')) {
+        $.ajax({
+            url: '/delete_student/',
+            type: 'POST',
+            data: {
+                'student_id': studentId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response.success) {
+                    row.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                    alert('Студент успешно удален!');
+                } else {
+                    alert('Ошибка: ' + response.error);
+                }
+            },
+            error: function() {
+                alert('Произошла ошибка при удалении студента');
+            }
+        });
+    }
+});
+$(document).on('click', '.edit-btn', function() {
+    var student_id = $(this).data('student-id');
+    var row = $(this).closest('tr');
+
+    // Заполняем форму данными из строки таблицы
+    $('#edit_student_id').val(student_id);
+    $('#edit_first_name').val(row.find('td:eq(2)').text());
+    $('#edit_last_name').val(row.find('td:eq(3)').text());
+    $('#edit_surname').val(row.find('td:eq(4)').text());
+    $('#edit_passport_number').val(row.find('td:eq(5)').text());
+    $('#edit_date_of_birth').val(row.find('td:eq(6)').text());
+    $('#edit_address_birth').val(row.find('td:eq(7)').text());
+    $('#edit_address').val(row.find('td:eq(8)').text());
+    $('#edit_snils').val(row.find('td:eq(9)').text());
+    $('#edit_education').val(row.find('td:eq(10)').text());
+    $('#edit_passport_issued').val(row.find('td:eq(11)').text());
+    $('#edit_organization').val(row.find('td:eq(12)').text());
+    $('#edit_medical_certificate').val(row.find('td:eq(13)').text());
+
+    // Показываем модальное окно
+    $('#editModal').show();
+});
+
+// Закрытие модального окна
+$('.close').click(function() {
+    $('#editModal').hide();
+});
+
+// Обработка отправки формы
+$('#editForm').submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '/edit_student/',  // Исправлено с /edit_group/ на /edit_student/
+        type: 'POST',
+        data: {
+            'student_id': $('#edit_student_id').val(),
+            'first_name': $('#edit_first_name').val(),
+            'last_name': $('#edit_last_name').val(),
+            'surname': $('#edit_surname').val(),
+            'passport_number': $('#edit_passport_number').val(),
+            'date_of_birth': $('#edit_date_of_birth').val(),
+            'address_birth': $('#edit_address_birth').val(),
+            'address': $('#edit_address').val(),
+            'snils': $('#edit_snils').val(),
+            'education': $('#edit_education').val(),
+            'passport_issued': $('#edit_passport_issued').val(),
+            'organization': $('#edit_organization').val(),
+            'medical_certificate': $('#edit_medical_certificate').val(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.success) {
+                var row = $('.edit-btn[data-student-id="' + response.data.id + '"]').closest('tr');
+                row.find('td:eq(2)').text(response.data.first_name);
+                row.find('td:eq(3)').text(response.data.last_name);
+                row.find('td:eq(4)').text(response.data.surname);
+                row.find('td:eq(5)').text(response.data.passport_number);
+                row.find('td:eq(6)').text(response.data.date_of_birth);
+                row.find('td:eq(7)').text(response.data.address_birth);
+                row.find('td:eq(8)').text(response.data.address);
+                row.find('td:eq(9)').text(response.data.snils);
+                row.find('td:eq(10)').text(response.data.education);
+                row.find('td:eq(11)').text(response.data.passport_issued);
+                row.find('td:eq(12)').text(response.data.organization);
+                row.find('td:eq(13)').text(response.data.medical_certificate);
+
+                $('#editModal').hide();
+                alert('Данные успешно обновлены!');
+            } else {
+                alert('Ошибка: ' + response.error);
+            }
+        },
+        error: function() {
+            alert('Произошла ошибка при обновлении данных');
+        }
+    });
+});
+
+// Закрытие модального окна при клике вне его
+window.onclick = function(event) {
+    if (event.target == document.getElementById('editModal')) {
+        $('#editModal').hide();
+    }
+}
+    $('#addNewGroupBtn').click(function() {
+    $('#addModal').show();
+});
+
+// Закрытие модального окна добавления
+$('#addModal .close').click(function() {
+    $('#addModal').hide();
+});
+
+// Обработка формы добавления
+$('#addForm').submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '/add_student/',  // Исправлено с /add_group/ на /add_student/
+        type: 'POST',
+        data: {
+            'first_name': $('#add_first_name').val(),
+            'last_name': $('#add_last_name').val(),
+            'surname': $('#add_surname').val(),
+            'passport_number': $('#add_passport_number').val(),
+            'date_of_birth': $('#add_date_of_birth').val(),
+            'address_birth': $('#add_address_birth').val(),
+            'address': $('#add_address').val(),
+            'snils': $('#add_snils').val(),
+            'education': $('#add_education').val(),
+            'passport_issued': $('#add_passport_issued').val(),
+            'organization': $('#add_organization').val(),
+            'medical_certificate': $('#add_medical_certificate').val(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.success) {
+                $('#addModal').hide();
+                location.reload();
+            } else {
+                alert('Ошибка: ' + response.error);
+            }
+        },
+        error: function() {
+            alert('Произошла ошибка при добавлении студента');
+        }
+    });
+});
+
+</script>
+</body>
+</html>
